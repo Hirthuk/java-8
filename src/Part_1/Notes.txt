@@ -1,0 +1,25 @@
+Java - 8
+Topic 1
+
+Default and Static Methods in Interfaces
+
+Default Methods:
+
+Until Java 7 We can able to create only abstract methods in Interfaces. From Java 8 onwards
+We can create default and static methods in Interface. This methods can have implementation in it.
+
+We can create any number of abstract methods in an Interface - Even before Java 8
+We can create any number of default methods in an Interface
+
+Usage of Default Methods in Interface
+You can keep any number of default methods in an Interface and make use of it just by chaning the
+Interface methods so it will update all the implemented classes.
+
+To Create and access the default methods in Java 8
+Create an Interface with abstract methods(Optional if not created it will be Market Interface(No methods inside the Interface))
+Create a or more(as wish) method in the Interface with default key word.
+create a class that implements and overrides the abstract methods in the Interface.
+
+Accessing:
+Create an Object for the Interface Implemented class in the same class or another class.Call the Methods from the object.
+You can also call the default methods in the Interface implementing classes inside the overridden methods.
