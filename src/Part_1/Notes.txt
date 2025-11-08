@@ -12,8 +12,8 @@ We can create any number of abstract methods in an Interface - Even before Java 
 We can create any number of default methods in an Interface
 
 Usage of Default Methods in Interface
-You can keep any number of default methods in an Interface and make use of it just by chaning the
-Interface methods so it will update all the implemented classes.
+You can keep any number of default methods in an Interface and make use of it just by changing the logic in
+the default methods in Interface so it will update all the implemented classes.
 
 To Create and access the default methods in Java 8
 Create an Interface with abstract methods(Optional if not created it will be Market Interface(No methods inside the Interface))
@@ -23,3 +23,30 @@ create a class that implements and overrides the abstract methods in the Interfa
 Accessing:
 Create an Object for the Interface Implemented class in the same class or another class.Call the Methods from the object.
 You can also call the default methods in the Interface implementing classes inside the overridden methods.
+
+Use case of Default methods
+
+Achieving backward compatibility -> In case a Interface is implemented with multiple class and if we add
+any abstract methods we need to override the abstract method in all the implemented classes.
+If we add that method as Default we are not forced to override the methods in the Implemented classes.
+
+We can override the default methods of the Interface in the Implemented classes and that change is in the
+scope of the Implemented Class only. Doesn't affect the Interface. When the Class object is created and called
+overridden default method of that class only called.
+
+We can call the default methods of two Interfaces by creating an object of the Implemented class. Both Interfaces
+Default methods will be accessible.
+
+When we have methods with same signature in the two interfaces and when the implemented class object try to call
+that method there will compile time error. This is called Ambiguity where JVM doesn't know which one to use.
+How to solve this scenario:
+1) OverRide the Interface method in the object created class. So the overridden functionality will be executed
+2) Call the exact Interface method with Interface(which Interface method u want to use).super().methodName().
+This Methods can only be called inside an overridden method of the sameMethod in the Interface implemented class
+
+At any way we have to override this method for use in the class which implementing the interfaces having same methods.
+
+Default Method should have a body when declared inside a Interface. That is the whole point of this.
+
+
+

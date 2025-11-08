@@ -1,0 +1,4 @@
+Static methods inside an Interface
+
+In Java Static methods not belongs to any object.
+

@@ -12,4 +12,8 @@ public interface defaultInterface {
     default String defaultStringMethod (){
         return "Default method with String data type called";
     }
+
+    default void sameMethod(){
+        System.out.println("Same signature method in Interface 1");
+    }
 }
