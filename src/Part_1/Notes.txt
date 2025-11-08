@@ -40,9 +40,10 @@ Default methods will be accessible.
 When we have methods with same signature in the two interfaces and when the implemented class object try to call
 that method there will compile time error. This is called Ambiguity where JVM doesn't know which one to use.
 How to solve this scenario:
-1) OverRide the Interface method in the object created class. So the overridden functionality will be executed
+Interface Implemented Class(Important)
+1) OverRide the Interface method in the Interface implemented class. So the overridden functionality will be executed
 2) Call the exact Interface method with Interface(which Interface method u want to use).super().methodName().
-This Methods can only be called inside an overridden method of the sameMethod in the Interface implemented class
+This Methods can only be called inside an overridden method of the sameMethod in the Interface implemented class.
 
 At any way we have to override this method for use in the class which implementing the interfaces having same methods.
 

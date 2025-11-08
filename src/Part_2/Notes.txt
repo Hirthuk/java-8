@@ -2,3 +2,15 @@ Static methods inside an Interface
 
 In Java Static methods not belongs to any object.
 
+By That said we cannot be able to access the methods by creating the object then object.method()
+
+So We can call the static implemented method in the interface by InterfaceName.staticMethod()
+
+We won't be getting any issues like same method Signature in Different Interface. Since we are going
+to call the method with the Interface name there won't be any issues.
+
+InterFaceName.sameMethod()
+InterFaceName2.sameMethod()
+
+
+For Example There are use cases in Interfaces like List where they using this default  and static methods
