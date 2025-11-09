@@ -1,0 +1,88 @@
+PreDefined Functional Interfaces
+
+This Pre-defined Functional Interfaces are used well with the Stream API. Which help us to achieve the
+functional programming.
+
+Functional Interfaces package is java.util.function
+All other Functional Interfaces in this package is derived from this below four FI.
+Most Commonly used Functional Interfaces
+1) Function
+2) Consumer
+3) Supplier
+4) Predicate
+
+Function Functional Interface:
+
+Perfect 👌 here’s your **short and clear “Function Functional Interface” note** — written in your style, with everything connected so you can easily remember 👇
+
+---
+
+## 🧩 **Function Functional Interface (java.util.function.Function)**
+
+### 🔹 **What it is**
+
+`Function<T, R>` is a **Functional Interface** in Java 8 that **takes one input (T)** and **returns one output (R)**.
+It’s mainly used for **data transformation** — converting one type of data into another.
+
+---
+
+### 🔹 **Syntax**
+
+```java
+Function<T, R> functionName = (input) -> { return output; };
+```
+
+* `T` → Input type
+* `R` → Return type
+* `(input)` → Input parameter
+* `-> { return output; }` → Lambda expression (method body)
+
+---
+
+### 🔹 **Example**
+
+```java
+Function<String, Integer> lengthFinder = (str) -> str.length();
+System.out.println(lengthFinder.apply("Hello")); // Output: 5
+```
+
+**Explanation:**
+
+* `Function<String, Integer>` → input is String, output is Integer
+* `(str) -> str.length()` → Lambda defines the logic
+* `.apply("Hello")` → calls the function and passes "Hello" as input
+
+---
+
+### 🔹 **Connection with Lambda**
+
+* `Function` has **one abstract method** → `R apply(T t);`
+* Lambda expression provides the **implementation** for that method.
+* So, instead of creating a class that implements `Function`, we can directly write logic using Lambda.
+
+---
+
+### 🔹 **Method Reference Example**
+
+We can also use **method reference** instead of Lambda:
+
+```java
+Function<String, String> toUpper = String :: toUpperCase;
+System.out.println(toUpper.apply("java")); // Output: JAVA
+```
+
+---
+
+### 🔹 **Common Methods**
+
+| Method                     | Description                                        |
+| -------------------------- | -------------------------------------------------- |
+| `apply(T t)`               | Executes the function logic                        |
+| `andThen(Function after)`  | Runs another function **after** current one        |
+| `compose(Function before)` | Runs another function **before** current one       |
+| `identity()`               | Returns a function that returns its input as it is |
+
+This apply() method is the abstract method of Function Functional Interface. The Lambda expression or method
+reference to define will be called using this apply abstract method.
+
+Other Methods are default and static methods of the Function Functional Interface.
