@@ -1,0 +1,108 @@
+Method References in Java 8
+
+Method References is basically a Special type of Lambda expression when u want to use
+the Method reference of the pre-defined methods of the Class
+
+Method Reference is basically a special type of Lambda Expression that is used when you
+want to use the reference of an already existing (predefined) method in a Class instead of
+writing the logic again.
+
+To Create a Method Reference
+
+InterfaceName interfaceName = className/Interface reference(Any other Interface like List) :: method
+
+We are assigning the method reference of the class to the interface reference
+
+InterfaceName interfaceName = String :: toUpperCase;
+
+:: means Method reference delimiter meaning we are referencing the method of the Class
+
+Resuing the predefined methods of Class.
+
+In Lambda, we have defined the whole logic. with the Method reference we can use the predefined methods.
+
+In Lambda → we define the logic.
+In Method Reference → we reuse the predefined method.
+
+Types of Methods in Java before starting about Types of method references
+
+Type of Method	Short Definition - Just Basic
+
+Based on Declaration
+Standard Library Methods	    Pre-built methods provided by the Java API for common tasks.
+User-defined Methods	        Custom methods written by the programmer to fulfill specific program requirements.
+
+Based on Association with Class/Object
+Instance Methods (Non-static)	Methods that belong to an object instance and can access instance variables.
+Static Methods (Class Methods)	Methods that belong to the class itself and can be called without creating an object.
+
+Based on Implementation/Behavior
+Abstract Methods                Methods declared without an implementation (body) in an abstract class or interface.
+Concrete Methods	            Any non-abstract method that has a complete implementation (body).
+Accessor Methods (Getters)	    Methods used to retrieve or read the value of an object's private variables.
+Mutator Methods (Setters)	    Methods used to modify or update the value of an object's private variables.
+
+
+
+
+Types of Method References:
+There are four types of method references
+
+1) Reference to Static Methods
+2) Reference to Instance Methods
+3) Reference to Instance methods of arbitrary object of the given type
+4) Reference to Constructors
+
+Important: Method references always be declared as a Implementation of the Functional Interface abstract method.
+
+Important: The abstract method in the Functional Interface and the method reference method should be in same
+signature(Return type parameter input)
+
+Reference to static methods:
+
+In Simple words -> Making the static method of the class as a method reference of the Functional Interface
+abstract method implementation
+
+Reference to Instance methods:
+
+Make use of Instance method of the class as a method reference of the Functional Interface
+abstract method implementation. As usual Instance methods of the class belongs to the object of the class.
+We have to create an Object and assign. Employee e = new Employee -> e :: validUser
+
+In case we can able to call the method reference without object creation. For the method you are referencing
+should not have any arguments and also the same return type as FI abstract method. In the Interface methods there can
+be arguments.
+
+3) Reference to Instance methods of arbitrary object of the given type
+
+Reference to Instance methods of an arbitrary object of a given type
+
+In simple words →
+We use the instance method of a class without creating an object.
+The object will be provided at runtime (as the argument when the method is called).
+So, the method reference can work on any object of that class.
+
+Example:
+
+Function<String, String> fun = String :: toLowerCase;
+System.out.println(fun.apply("HELLO")); // Output: hello
+
+
+Here, String :: toLowerCase means →
+for any String object passed (like "HELLO"), call its toLowerCase() method.
+
+4) Constructor reference
+
+Same way we can make the Method reference as the class constructor method
+
+FunctionalInterface FIInterface = Employee :: new(Means the constructor)
+
+FIInterface.abstractMethod(parameter same as constructor) -> It will execute the logic inside the constructor
+
+Always the constructor method reference return the object of the class. So the return type of the FI abstract
+Method will always be the Class object -> Employee returnEmployee(String name, int id);
+
+Make sure the abstract method parameter inputs.. and also have constructor with that parameter for to work.
+
+
+
