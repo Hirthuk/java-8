@@ -97,6 +97,9 @@ If the return is single statement we can ignore the curly braces
 From the lambda instance created we can also call the default methods also.
 As usual the static methods  are only called from the Interface.staticMethod only.
 
+There are predefined Functional Interfaces as part of Java 8 and all those mostly will be used with Stream
+API
+
 
 
 
