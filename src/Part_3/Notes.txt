@@ -1,0 +1,104 @@
+Functional Interfaces and lambda Expression
+
+Understand what is Imperative VS Declarative VS Functional Programming
+
+### 🧠 **Imperative vs Declarative vs Functional Programming**
+
+#### **1️⃣ Imperative Programming**
+
+* **Meaning:** You tell *how* to do things — step-by-step instructions.
+* **Focus:** *How to achieve* the result.
+* **Example:** Using loops, conditions, and variable updates manually.
+* **Java Example:**
+
+  ```java
+  int sum = 0;
+  for (int i = 0; i < 5; i++) {
+      sum += i;
+  }
+  System.out.println(sum);
+  ```
+
+---
+
+#### **2️⃣ Declarative Programming**
+
+* **Meaning:** You tell *what* you want — not *how* to do it.
+* **Focus:** *What result* you want.
+* **Example:** SQL, Streams, LINQ — express logic, not control flow.
+* **Java Example (using Stream API):**
+
+  ```java
+  int sum = IntStream.range(0, 5).sum();
+  ```
+
+---
+
+#### **3️⃣ Functional Programming**
+
+* **Meaning:** A subset of declarative programming — focuses on using *pure functions* and *immutability*.
+* **Focus:** Functions as first-class citizens, avoid changing state.
+* **Java Example:**
+
+  ```java
+  List<Integer> nums = Arrays.asList(1,2,3,4,5);
+  int sum = nums.stream().reduce(0, Integer::sum);
+  ```
+
+---
+
+### ⚖️ **Difference Summary**
+
+| Concept         | Focus                      | Example Style      | State Change | Approach            |
+| --------------- | -------------------------- | ------------------ | ------------ | ------------------- |
+| **Imperative**  | *How to do it*             | Loops, conditions  | Yes          | Step-by-step        |
+| **Declarative** | *What to do*               | SQL, Streams       | No           | Describe result     |
+| **Functional**  | *Functions & Immutability* | Lambda, Stream API | No           | Uses pure functions |
+
+
+Functional Interface
+
+Basic difference is that an Interface can contain many abstract,default or static method.
+For the Functional interface you can have only one Abstract method and multiple default and static method.
+We can annotate the Interface functional interface with @FunctionalInterface(Forces to maintain functional Interface).
+
+Pro Tip - If an Interface contains no methods then it is Marker Interface
+
+By Use of the Lambda expressions the functional interface abstract method will be implemented. An Instance
+for the implementation will be created and used.
+
+Main Purpose of the Functional Interface is to create Single functionality implementation that
+will be implemented with Lambda expression.
+
+Lambda Expression:
+
+With the Lambda Expression we are going to Implement the single abstract method in the Interface
+also that will help to create an instance of the abstract method of the Functional Interface
+
+Syntax:
+
+Method without Parameter
+
+() -> {code block}
+
+Method without Parameter
+
+(parameter names) -> {code block}
+
+We can Instantiate this Functional Interface abstract method any number of times with different object reference
+names.
+
+For More than one parameter it is same concept just we need to pass the (number of parameters).
+Also, the instead of (int x, int y) can be written as (x,y) and automatically taken appropriately.
+If the return is single statement we can ignore the curly braces
+
+(x,y) -> x*y;
+
+From the lambda instance created we can also call the default methods also.
+As usual the static methods  are only called from the Interface.staticMethod only.
+
+
+
+
+
+
