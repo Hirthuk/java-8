@@ -2,6 +2,12 @@ package Part_5.Part_2;
 
 public class Employee {
 
+    @Override
+    public  boolean equals(Object a){
+        Employee e = (Employee) a;
+        return this.getSalary() == e.getSalary();
+    }
+
     private int id;
     private double salary;
     private String name;

@@ -3,3 +3,31 @@ Predicate Functional Interface
 Predicate Functional Interface have one abstract method called test.
 Predicate is used to test and return the boolean value based on the condition.
 
+Predicate<Class> functionName = e -> e > 21; Lambda expression to return boolean
+
+test method is the abstract method that will be used.
+
+functionName.test(23)
+
+Default Methods in Predicate
+
+This is very simple and similar to Logical operator
+
+Default methods
+
+and -> Similar to && PredicateFunction1.and(anotherPredicate).test(Class object) -> both true return true
+
+or -> Similar to || PredicateFunction1.or(anotherPredicate).test(Class object) -> Any one is true return true
+
+negate ->  Similar to ! PredicateFunction1.negate().test(Class object) ->return opposite
+
+isEqual -> Similar to = PredicateFunction1.test() ->return true if equal
+This isEqual will be using this public static boolean equals(Object a, Object b) method to verify.
+Where the Object a will be declared while creating and object b will be compared.
+
+If you want to use it for other Class object comparison like  Employee with difference compare you
+have to override the method in that Class. One when you want different comparison logic
+
+Sine it is a static class we have to use Predicate.isEquals() while declaring. isEquals(Object Ref)
+
+See Implementation.
