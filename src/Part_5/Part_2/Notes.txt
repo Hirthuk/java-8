@@ -1,0 +1,5 @@
+Predicate Functional Interface
+
+Predicate Functional Interface have one abstract method called test.
+Predicate is used to test and return the boolean value based on the condition.
+
