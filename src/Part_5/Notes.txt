@@ -86,3 +86,47 @@ This apply() method is the abstract method of Function Functional Interface. The
 reference to define will be called using this apply abstract method.
 
 Other Methods are default and static methods of the Function Functional Interface.
+
+andThen(Function after) -> Runs another function **after** current one
+
+This means you can have one Function FI instance that does something.. after is completes you want to
+execute another FUnction FI instance(Important only takes FUNCTION FI instance) -> Implemented in code
+
+compose(Function before) is quite opposite to andThen default function.
+
+It will execute the function inside the compose function and then that value will be passed to the
+first function.
+
+✅ **`Function.identity()` — Short Notes**
+
+* **Definition:**
+  It’s a **static method** in the `Function` interface that returns a **function which always returns its input argument**.
+
+Since it is a static method we will calling using Function.identity();
+* **Syntax:**
+
+  ```java
+  Function<T, T> func = Function.identity();
+  ```
+
+* **Meaning:**
+  It acts as a **“do nothing”** function — whatever input you give, the same is returned.
+
+* **Example:**
+
+  ```java
+  Function<String, String> same = Function.identity();
+  System.out.println(same.apply("Sharan")); // Output: Sharan
+  ```
+
+* **Use Case:**
+  🔹 When you need a *default* function in a pipeline or stream that doesn’t transform data.
+  🔹 Common in **Stream API**:
+
+  ```java
+  map(Function.identity())   // keeps elements as-is
+  ```
+
+**In short:**
+👉 `Function.identity()` = `x -> x` (returns input unchanged).
+
