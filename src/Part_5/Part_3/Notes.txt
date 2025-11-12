@@ -1,0 +1,37 @@
+Consumer Functional Interface
+
+Represents an operation that accepts a single input argument and returns no result.
+Unlike most other functional interfaces, Consumer is expected to operate via side-effects.
+This is a functional interface whose functional method is accept(Object).
+
+Contains two methods called
+
+accept(Object) -> Abstract method
+
+andThen() -> Default method
+
+UseCases:
+
+When u just want to do some operations but don't want to return anything like adding or removing
+data from the list like that.
+
+In foreach loops like list it is expecting Consumer FI as input. We can specify the logic in that and
+it will apply to all the elements
+
+andThen() -> Default method - This one is same as Function FI andThen() but it doesn't return value
+
+This means you can have one Consumer FI instance that does something.. after is completing you want to
+execute another Consumer FI instance(Important only takes Consumer FI instance)
+
+andThen() → runs the first consumer, then the second consumer on the same input.
+
+Consumer<String> printName = name -> System.out.println("Name: " + name);
+
+        // Second consumer prints the name length
+        Consumer<String> printLength = name -> System.out.println("Length: " + name.length());
+
+        // Chaining both consumers using andThen
+        Consumer<String> combined = printName.andThen(printLength);
+
+        // Execute both in order
+        combined.accept("Sharan");
