@@ -1,0 +1,96 @@
+Optional Class in Java 8
+
+A container object which may or may not contain a non-null value. If a value is present, isPresent()
+will return true and get() will return the value.
+Additional methods that depend on the presence or absence of a contained value are provided,
+such as orElse() (return a default value
+if value not present) and ifPresent() (execute a block of code if the value is present).
+
+This Optional Class is used mostly to avoid NullPointerException.
+
+Optional class comes with many default and static methods that will be used to work on how to manage
+many scenario's of Null value. What to do if value is present what if not present. Set the default value
+Throw predefined exceptions like that.
+
+Instead you use case requires to return null value it is encouraged to use empty() static method of optional class
+
+
+Clear Notes Below
+
+Absolutely ✅
+Here’s a **complete and simple note on `Optional` class** — including
+👉 what each method does,
+👉 what type of argument it takes, and
+👉 one small, clear use case example for each.
+
+---
+
+# ☕ Java `Optional<T>` — Full Simple Notes
+
+### 💡 Purpose:
+
+`Optional` is a **container** that can hold a **value** or be **empty**.
+It helps us avoid `NullPointerException` and write safer code.
+
+---
+
+## 🧩 1. Creating an Optional
+
+| Method                  | Argument Type        | What It Does                                                             | Example                                              |
+| ----------------------- | -------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------- |
+| **of(T value)**         | A **non-null value** | Creates an Optional with the given value. Throws error if value is null. | `Optional<String> name = Optional.of("Sharan");`     |
+| **ofNullable(T value)** | A **nullable value** | Creates an Optional that can be empty if value is null.                  | `Optional<String> name = Optional.ofNullable(null);` |
+| **empty()**             | — (no argument)      | Creates an empty Optional (no value inside).                             | `Optional<String> name = Optional.empty();`          |
+
+---
+
+## 🕵️ 2. Checking the Value
+
+| Method          | Argument Type | What It Does                         | Example                                                  |
+| --------------- | ------------- | ------------------------------------ | -------------------------------------------------------- |
+| **isPresent()** | —             | Returns `true` if value exists.      | `if (name.isPresent()) System.out.println("Has value");` |
+| **isEmpty()**   | —             | Returns `true` if Optional is empty. | `if (name.isEmpty()) System.out.println("No value");`    |
+
+---
+
+## 📦 3. Getting or Providing a Value
+
+| Method                                 | Argument Type                                       | What It Does                                                                   | Example                                                                     |
+| -------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| **get()**                              | —                                                   | Returns the value inside. ⚠️ Throws error if empty.                            | `String value = name.get();`                                                |
+| **orElse(T other)**                    | A **default value**                                 | Returns value if present, else returns the given default.                      | `String user = name.orElse("Guest");`                                       |
+| **orElseGet(Supplier<? extends T>)**   | A **Supplier function** (no input, returns a value) | Returns value if present; otherwise, runs the supplier and returns its result. | `String user = name.orElseGet(() -> "Created Default User");`               |
+| **orElseThrow()**                      | —                                                   | Throws `NoSuchElementException` if empty.                                      | `String user = name.orElseThrow();`                                         |
+| **orElseThrow(Supplier<? extends X>)** | A **Supplier that returns an Exception**            | Throws your custom exception if empty.                                         | `String user = name.orElseThrow(() -> new RuntimeException("Not found!"));` |
+
+---
+
+## 🔄 4. Transforming the Value
+
+| Method                                        | Argument Type                                                | What It Does                                                   | Example                                                                   |
+| --------------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **map(Function<? super T, ? extends U>)**     | A **Function** that takes the value and returns a new value. | Transforms the value if present, wraps it in a new Optional.   | `Optional<Integer> len = name.map(String::length);`                       |
+| **flatMap(Function<? super T, Optional<U>>)** | A **Function** that returns an Optional.                     | Same as map but avoids nested Optional.                        | `Optional<Integer> len = name.flatMap(str -> Optional.of(str.length()));` |
+| **filter(Predicate<? super T>)**              | A **condition (Predicate)** that returns true/false.         | Keeps the value only if condition is true; else becomes empty. | `Optional<String> valid = name.filter(n -> n.length() > 3);`              |
+
+---
+
+## ⚙️ 5. Performing Actions
+
+| Method                                             | Argument Type                                    | What It Does                                           | Example                                                                                  |
+| -------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| **ifPresent(Consumer<? super T>)**                 | A **Consumer** (takes a value, returns nothing). | Runs the given action only if value exists.            | `name.ifPresent(val -> System.out.println("Hello " + val));`                             |
+| **ifPresentOrElse(Consumer<? super T>, Runnable)** | A **Consumer** and a **Runnable** (no args).     | Runs first if value exists, otherwise runs the second. | `name.ifPresentOrElse(System.out::println, () -> System.out.println("Empty Optional"));` |
+
+
+### 🧠 Quick Summary
+
+| Category        | Methods                                     | Arguments                    |
+| --------------- | ------------------------------------------- | ---------------------------- |
+| **Create**      | `of`, `ofNullable`, `empty`                 | Value (nullable or not)      |
+| **Check**       | `isPresent`, `isEmpty`                      | None                         |
+| **Get/Default** | `get`, `orElse`, `orElseGet`, `orElseThrow` | Value / Supplier / Exception |
+| **Transform**   | `map`, `flatMap`, `filter`                  | Function / Predicate         |
+| **Action**      | `ifPresent`, `ifPresentOrElse`              | Consumer / Runnable          |
+
+
