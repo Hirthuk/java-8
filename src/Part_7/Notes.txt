@@ -121,4 +121,136 @@ We can call only once one terminal method on any stream instance
 When we call terminal method we will get the result immediately with all pipelined methods.
 
 
+---
+
+# ✅ **Most Used Stream Operations (Java 8)**
+
+---
+
+# **🔷 Intermediate Operations (return Stream)**
+
+> **Lazy** → executes only when terminal op is called.
+
+### **1) filter(Predicate)**
+
+Selects elements that satisfy a condition.
+*Ex:* keep only even numbers.
+
+### **2) map(Function)**
+
+Transforms each element into another value.
+*Ex:* convert String → length.
+
+### **3) flatMap(Function)**
+
+Flattens nested structures.
+*Ex:* List<List<Integer>> → Stream<Integer>.
+
+### **4) sorted()**
+
+Sorts elements in natural order.
+
+### **5) sorted(Comparator)**
+
+Sorts using custom logic.
+
+### **6) distinct()**
+
+Removes duplicate elements.
+
+### **7) limit(n)**
+
+Takes only the first *n* elements.
+
+### **8) skip(n)**
+
+Skips the first *n* elements.
+
+### **9) peek(Consumer)**
+
+Used for debugging (like printing during pipeline).
+Doesn’t modify elements.
+
+### **10) mapToInt / mapToLong / mapToDouble**
+
+Converts object stream → primitive stream.
+
+---
+
+# **🔷 Terminal Operations (end of stream pipeline)**
+
+> **Executes all intermediate operations** and produces result.
+
+### **1) forEach(Consumer)**
+
+Applies an action for each element.
+*Ex:* print elements.
+
+### **2) collect(Collector)**
+
+Converts stream → List, Set, Map, etc.
+Most used with `Collectors.toList()`.
+
+### **3) toArray()**
+
+Converts stream → array.
+
+### **4) count()**
+
+Returns number of elements.
+
+### **5) reduce(...)**
+
+Combines all elements into a single value.
+*Ex:* sum of numbers.
+
+### **6) findFirst()**
+
+Returns first element (Optional).
+
+### **7) findAny()**
+
+Returns any element (Optional) (useful in parallel streams).
+
+### **8) anyMatch(Predicate)**
+
+Checks if **any** element matches condition → boolean.
+
+### **9) allMatch(Predicate)**
+
+Checks if **all** elements match condition.
+
+### **10) noneMatch(Predicate)**
+
+Checks if **no** element matches condition.
+
+### **11) min(Comparator) / max(Comparator)**
+
+Returns smallest/largest element.
+
+---
+
+## ⭐ Super Quick Summary Table
+
+| Operation Type   | Methods                                                       | Purpose                   |
+| ---------------- | ------------------------------------------------------------- | ------------------------- |
+| **Intermediate** | filter, map, flatMap, sorted, distinct, limit, skip, peek     | Transform or shape stream |
+| **Terminal**     | forEach, collect, count, reduce, findFirst, anyMatch, toArray | Produce final result      |
+
+
+Overall CheatSheet
+
+Quick Cheatsheet (copy/save)
+
+Create: list.stream(), Arrays.stream(arr), Stream.of(...), Files.lines(Path),
+Pattern.splitAsStream(), Stream.generate(), Stream.iterate()
+
+Intermediate: filter, map, flatMap, distinct, sorted, limit, skip, peek, mapToInt
+
+Terminal: forEach, collect, reduce, count, findFirst, anyMatch, allMatch, noneMatch, toArray
+
+Collectors: toList(), toSet(), toMap(), groupingBy(), partitioningBy(), joining(), counting()
+
+Primitive: mapToInt, sum, average, min, max, summaryStatistics
+
 
