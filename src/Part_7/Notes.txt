@@ -141,10 +141,17 @@ Selects elements that satisfy a condition.
 Transforms each element into another value.
 *Ex:* convert String → length.
 
+mapToInt(Integer :: intValue) -> Converts to Integer to int
+
 ### **3) flatMap(Function)**
 
 Flattens nested structures.
 *Ex:* List<List<Integer>> → Stream<Integer>.
+
+flatMap(): This is an intermediate operation in Java Streams that takes a Function as an argument.
+This function is applied to each element of the input stream, and each application of the function is
+expected to produce a new Stream.
+flatMap() then takes all these individual streams and concatenates them into a single, flattened stream.
 
 ### **4) sorted()**
 
@@ -226,6 +233,8 @@ Checks if **no** element matches condition.
 
 ### **11) min(Comparator) / max(Comparator)**
 
+12) sum() to add - calculate all the value
+
 Returns smallest/largest element.
 
 ---
@@ -254,3 +263,258 @@ Collectors: toList(), toSet(), toMap(), groupingBy(), partitioningBy(), joining(
 Primitive: mapToInt, sum, average, min, max, summaryStatistics
 
 
+Collectors methods explanation:
+
+what is collect
+
+collect is a terminal operation of stream which take Collector object as an argument... below are the
+details for the different.
+
+---
+
+# ⚡ **Collectors Deep Dive — Short Notes**
+
+## ✅ **What is a Collector?**
+
+A Collector is an object (from `java.util.stream.Collectors`)
+used to **convert a Stream into a different data structure or summary value**.
+
+Used only in **terminal operation**:
+
+```java
+stream.collect(Collector)
+```
+
+---
+
+# 🔹 **1. Collectors.toList()**
+
+### **Purpose**
+
+Collects stream elements into a **List** (ArrayList by default).
+
+### **Usage**
+
+```java
+List<String> list = stream.collect(Collectors.toList());
+```
+
+### **Notes**
+
+* Allows duplicates
+* Maintains insertion order
+* Simple and most used
+
+---
+
+# 🔹 **2. Collectors.toSet()**
+
+### **Purpose**
+
+Collects stream elements into a **Set**.
+
+### **Usage**
+
+```java
+Set<String> set = stream.collect(Collectors.toSet());
+```
+
+### **Notes**
+
+* Removes duplicates
+* Order is NOT guaranteed (HashSet)
+
+---
+
+# 🔹 **3. Collectors.toMap(keyMapper, valueMapper)**
+
+### **Purpose**
+
+Convert stream elements into a **Map** by choosing keys & values.
+
+### **Usage**
+
+```java
+Map<K, V> map = stream.collect(
+        Collectors.toMap(
+                item -> item.getId(),     // keyMapper
+                item -> item.getName()    // valueMapper
+        )
+);
+```
+
+### **Notes**
+
+* Throws exception if keys duplicate
+* For duplicates → use mergeFn (next section)
+
+---
+
+# 🔹 **4. Collectors.toMap(keyMapper, valueMapper, mergeFn)**
+
+### **Purpose**
+
+Handles duplicate keys.
+
+### **Usage**
+
+```java
+Collectors.toMap(
+    keyMapper,
+    valueMapper,
+    (oldVal, newVal) -> oldVal   // merge function
+);
+```
+
+### **Notes**
+
+* mergeFn decides how to handle duplicate keys
+* mergeFn receives `(oldValue, newValue)`
+
+---
+
+# 🔹 **5. Collectors.groupingBy(keyMapper)**
+
+### **Purpose**
+
+Groups data into a **Map<K, List<V>>**.
+
+### **Usage**
+
+```java
+Map<String, List<Employee>> map = employees.stream()
+        .collect(Collectors.groupingBy(emp -> emp.getDept()));
+```
+
+### **Notes**
+
+* Key = group criteria
+* Value = list of items in that group
+* Most common collector for data grouping
+
+---
+
+# 🔹 **6. Collectors.groupingBy(keyMapper, downstreamCollector)**
+
+### **Purpose**
+
+Group data + apply another collector inside group.
+
+### **Example: Count per group**
+
+```java
+Collectors.groupingBy(emp -> emp.getDept(), Collectors.counting());
+```
+
+### **Notes**
+
+* Makes grouping more powerful
+* downstream collectors:
+
+  * counting()
+  * summingInt()
+  * mapping()
+  * toSet(), toList()
+  * joining()
+  * etc.
+
+---
+
+# 🔹 **7. Collectors.partitioningBy(predicate)**
+
+### **Purpose**
+
+Splits elements into **two groups only** → TRUE and FALSE.
+
+### **Usage**
+
+```java
+Map<Boolean, List<Integer>> result =
+        nums.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+```
+
+### **Notes**
+
+* Output map always has two keys: `true`, `false`
+* Used when condition is binary
+
+---
+
+# 🔹 **8. Collectors.joining(delimiter)**
+
+### **Purpose**
+
+Joins strings into one big string with a delimiter.
+
+### **Usage**
+
+```java
+String ans = names.stream().collect(Collectors.joining(", "));
+```
+
+### **Notes**
+
+* Works only with Stream<String>
+* Useful for CSV, display, logs
+
+---
+
+# 🔹 **9. Collectors.counting()**
+
+### **Purpose**
+
+Counts number of elements in a group.
+
+### **Usage**
+
+```java
+Collectors.groupingBy(key, Collectors.counting());
+```
+
+### **Notes**
+
+* Long result
+* Used in frequency table
+
+---
+
+# 🔹 **Other Useful Collectors**
+
+### **mapping(mapper, downstreamCollector)**
+
+Transform each element before collecting.
+
+```java
+Collectors.mapping(emp -> emp.getName(), Collectors.toList())
+```
+
+### **summingInt(), summingDouble(), averagingInt()**
+
+Used for numeric summaries.
+
+```java
+Collectors.summingInt(emp -> emp.getSalary())
+```
+
+### **minBy(), maxBy()**
+
+Find minimum/maximum using comparator.
+
+```java
+Collectors.maxBy(Comparator.comparingInt(a -> a))
+```
+
+---
+
+# 🔥 **Quick Interview Revision Sheet**
+
+| Collector               | What it returns       | When to use                         |
+| ----------------------- | --------------------- | ----------------------------------- |
+| toList()                | List                  | Order preserved, duplicates allowed |
+| toSet()                 | Set                   | Remove duplicates                   |
+| toMap()                 | Map                   | Key-value output                    |
+| groupingBy()            | Map<K, List<V>>       | Group by category                   |
+| groupingBy + downstream | Map<K, result>        | Group + summary                     |
+| partitioningBy()        | Map<Boolean, List<V>> | True/False split                    |
+| joining()               | String                | Combine all strings                 |
+| counting()              | Long                  | Count items                         |

@@ -23,7 +23,7 @@ public class Exercise1B {
         System.out.println(list);
 //      Java 11 Feature
 //        This will throw error : stream in Java can only be consumed (operated upon by a terminal operation) once.
-//Create new stream instance for that
+//Create new stream instance for that do again.
 //        random100Numbers.distinct().limit(10).toList().forEach(System.out :: println);
 
 
